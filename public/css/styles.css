@@ -1,0 +1,85 @@
+body
+{
+    /* background-color: #d9d9d9; */
+    background-image: url("/img/pozadina.jpg");
+    background-position: center;
+    overflow-x: hidden;
+}
+footer
+{
+    background-color: #ffffff;
+}
+#lokacija
+{
+    margin-bottom: 39.7vh;
+}
+a,a:hover{
+    text-decoration: none;
+    color: white;
+}
+
+i
+{
+ color:#0066ff;   
+}
+
+ul
+{
+    margin-right: 2vw;
+}
+
+#pregledKarte
+{
+    padding-bottom: 19vh;
+}
+
+#sviFilmoviTabela
+{
+    padding-bottom:24vh;
+    min-height: 84.5vh;
+}
+
+#sviFilmoviTabela2,#sviKorisniciTabela
+{
+    min-height: 84.5vh;
+}
+
+#omotacZaRegistrovanje
+{
+    padding-top: 25vh;
+    padding-bottom: 23.2vh;
+}
+#omotacZaLogovanje
+{
+    padding-top: 25vh;
+    padding-bottom: 31.8vh ;
+    margin-bottom: 5.5vh;
+}
+
+.aktuelniSlike
+{
+    height: 400px;
+}
+
+.opisAktuelnih
+{
+    height: 10vh;
+    margin-bottom: 20%;
+}
+img
+{
+    height: 710px;
+}
+
+#cbDodajFilm
+{
+    width: 2vw;
+    height: 3.5vh;
+}
+
+#tamnaSlova
+{
+    color:gray;
+    font-weight:900;
+    
+}

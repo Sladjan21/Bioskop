@@ -1,2 +1,2 @@
-# Bioskop
-Web aplikacija koja je napravljena uz pomoc laravela
+# projekatZaWeb
+ Web aplikacija za rezervisanje karata preko interneta
