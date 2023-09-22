@@ -64,5 +64,8 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'adminProvera' => \App\Http\Middleware\ProveraAdmin::class,
+        'moderator' => \App\Http\Middleware\Authorization::class,
+        'moderatorProba' => \App\Http\Middleware\Moderator::class,
+        'korisnik' => \App\Http\Middleware\Korisnik::class,
     ];
 }

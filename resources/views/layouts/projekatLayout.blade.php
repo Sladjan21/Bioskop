@@ -16,7 +16,9 @@
 
     <!-- CDN for booystrap icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    
+
+    <!-- CDN za jquery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
    
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -85,20 +87,20 @@
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
-
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
+                                @if(Auth::user() != null && Auth::user()->Admin != 1)
+                                    <a class="dropdown-item" href="{{route('pregledRezervacija')}}">Pregled rezervacija</a>
+                                @endif
                                @if(Auth::user()->Admin == 1)
                                 <a class="dropdown-item" href="{{route('admin')}}">Admin strana</a>
                                @endif
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
-
-                                
                             </div>
                         </li>
                         @endguest
@@ -110,7 +112,7 @@
         <main>
             @yield('content')
         </main>
-        <footer class="d-flex flex-wrap justify-content-between align-items-center pb-3 border-top">
+        <footer class="d-flex flex-wrap justify-content-between align-items-center pb-3 border-top mt-3">
             <div class="col-md-4 d-flex align-items-center">
                 <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
                     <svg class="bi" width="30" height="24">
@@ -136,8 +138,8 @@
             </ul>
         </footer>
     </div>
-    <script src="/js/main.js"></script>
-    
+    @stack('glavna-script')
+    @stack('komentar-script')
 </body>
 
 </html>

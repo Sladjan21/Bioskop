@@ -39,6 +39,8 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+
+                    @if(Auth::user()->Rola != 'moderator')
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{url('index')}}">Korisnici</a>
@@ -46,7 +48,12 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{url('adminFilmovi')}}">Filmovi</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('moderator')}}">Zahtevi za rezervaciju</a>
+                        </li>
                     </ul>
+                    @endif
+
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
@@ -74,14 +81,12 @@
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-                               @if(Auth::user()->Admin == 1)
-                                <a class="dropdown-item" href="">Admin strana</a>
-                               @endif
+                                
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
 
-                                
+
                             </div>
                         </li>
                         @endguest

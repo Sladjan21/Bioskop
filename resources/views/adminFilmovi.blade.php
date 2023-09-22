@@ -49,7 +49,7 @@
                                 {
                                     if ($film->IDFilma == $vrem->IDFilma) {
 
-                                        echo $vrem->Vreme;
+                                        echo $vrem->Vreme . "<br>";
                                     }
                                     
                                 }

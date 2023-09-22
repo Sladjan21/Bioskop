@@ -9,7 +9,7 @@
     <table class="table table-dark table-striped table-hover">
         <thead>
             <tr>
-
+                <!-- <th scope="col">Slika</th> -->
                 <th scope="col">Naziv filma</th>
                 <th scope="col">Vreme projekcije</th>
                 <th scope="col">Premijera</th>
@@ -23,16 +23,21 @@
             foreach ($filmovi as $film) {
 
                 echo "<tr>";
+                // echo "<td>";
+                // echo "<img class='filmPrikazSlika' src='".$film->Slika."' alt='slika filma'/>";
+                // echo "</td>";
                 echo "<td>";
+                echo "<a href= '/pregledFilma/".$film->IDFilma ."'>";
                 echo $film->NazivFilma;
+                echo "</a>";
                 echo "</td>";
                 echo "<td>";
                 echo $film->Vreme;
                 // foreach ($vreme as $vrem) {
                 //     if ($vrem->IDFilma == $film->IDFilma) {
-                        
+
                 //         echo $vrem->Vreme;
-                        
+
                 //     }
                 //     else
                 //     {
@@ -51,7 +56,7 @@
                 echo "<td>";
                 echo $film->Cena;
                 echo "</td>";
-                
+
             ?>
                 <td>
                     <button type="button" class="btn btn-primary"><a href="{{url('pregledKarte/' . $film->IDFilma)}}">Rezervisi odmah</a></button>

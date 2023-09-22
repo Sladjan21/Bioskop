@@ -14,33 +14,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('landing');
-});
-
-Route::get('landing', function () {
-    return view('landing');
-});
-
-Route::get('filmovi', function () {
-    return view('filmovi');
-});
-
-Route::get('kontakt', function () {
-    return view('kontakt');
-});
-
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/proveraZaIspis', [App\Http\Controllers\HomeController::class, 'provera'])->name('proveraZaIspis');
-
-Route::get('/prikaziSveFilmove', [App\Http\Controllers\FilmoviController::class, 'prikaziSveFilmove'])->name('prikaziSveFilmove');
-
-Route::get('/pregledKarte/{id}', [App\Http\Controllers\FilmoviController::class, 'pregledKarte'])->name('pregledKarte');
-
-Route::post('/skiniTXT', [App\Http\Controllers\FajlController::class, 'skiniTXT'])->name('skiniTXT');
 
 Route::get('/index', [App\Http\Controllers\AdminController::class, 'index'])->name('admin');
 
@@ -60,9 +34,52 @@ Route::post('/adminIzmeniFilm', [App\Http\Controllers\AdminController::class, 'i
 
 Route::get('/brisiVreme/{idVreme}', [App\Http\Controllers\AdminController::class, 'izbrisiVreme'])->name('izbrisiVreme');
 
-Route::get('/izmeniVreme/{idVreme}', [App\Http\Controllers\AdminController::class, 'izmeniVreme'])->name('izmeniVreme');
+Route::post('/dodajVreme', [App\Http\Controllers\AdminController::class, 'dodajVreme'])->name('dodajVreme');
+
+Route::get('/moderator', [App\Http\Controllers\ModeratorController::class, 'index'])->name('moderator')->middleware('moderatorProba');
+
+Route::get('/pregledRezervacija', [App\Http\Controllers\ZahtevController::class, 'PrikazZahtevaKorisniku'])->name('pregledRezervacija');
+
+Route::get('/rezervisiFilm/{IDFilma}/{id}', [App\Http\Controllers\ZahtevController::class, 'OdobriZahtev'])->name('rezervisiFilm');
+
+Route::post('/odbijRezervaciju', [App\Http\Controllers\ZahtevController::class, 'OdbijZahtev'])->name('odbijRezervaciju');
 
 
-Route::get('proba', function () {
-    return view('proba');
+Route::middleware(['korisnik'])->group(function () {
+
+    Route::get('/', function () {
+        return view('landing');
+    });
+
+    Route::get('landing', function () {
+        return view('landing');
+    });
+
+    Route::get('filmovi', function () {
+        return view('filmovi');
+    });
+
+    Route::get('kontakt', function () {
+        return view('kontakt');
+    });
+
+
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    Route::get('/proveraZaIspis', [App\Http\Controllers\HomeController::class, 'provera'])->name('proveraZaIspis');
+
+    Route::get('/prikaziSveFilmove', [App\Http\Controllers\FilmoviController::class, 'prikaziSveFilmove'])->name('prikaziSveFilmove');
+
+    Route::get('/pregledKarte/{id}', [App\Http\Controllers\FilmoviController::class, 'pregledKarte'])->name('pregledKarte');
+
+    Route::post('/rezervisi', [App\Http\Controllers\ZahtevController::class, 'ZahtevZaRezervaciju'])->name('rezervisi');
+
+    Route::get('/pregledFilma/{id}', [App\Http\Controllers\FilmoviController::class, 'prikaziFilm'])->name('pregledFilma');
+
+    Route::get('proba', function () {
+        return view('proba');
+    });
+
+    Route::post('/skiniPotvrdu', [App\Http\Controllers\FajlController::class, 'skiniTXT'])->name('skiniTXT');
+
 });

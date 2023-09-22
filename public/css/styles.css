@@ -66,9 +66,10 @@ ul
     height: 10vh;
     margin-bottom: 20%;
 }
-img
+.filmPrikazSlika
 {
-    height: 710px;
+    height: 350px;
+    max-width: 250px;
 }
 
 #cbDodajFilm

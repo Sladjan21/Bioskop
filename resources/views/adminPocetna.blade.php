@@ -15,7 +15,7 @@
                             <tr>
                                 <th scope="col">Ime</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Admin</th>
+                                <th scope="col">Rola</th>
                                 <th scope="col">Akcija</th>
                             </tr>
                         </thead>
@@ -36,10 +36,13 @@
                                 echo $korisnik->email;
                                 echo "</td>";
                                 echo "<td>";
-                                if ($korisnik->Admin > 0) {
-                                    echo "Da";
-                                } else {
-                                    echo "Ne";
+                                if ($korisnik->Rola == "moderator") {
+                                    echo $korisnik->Rola;
+                                } elseif($korisnik->Rola == "admin") {
+                                    echo $korisnik->Rola;
+                                }
+                                else {
+                                    echo "Korisnik";
                                 }
                                 echo "</td>";
                                 echo "<td>";

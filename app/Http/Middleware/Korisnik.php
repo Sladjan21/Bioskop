@@ -4,10 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 
-class ProveraAdmin
+class Korisnik
 {
     /**
      * Handle an incoming request.
@@ -18,24 +16,14 @@ class ProveraAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        $user = Auth::user();
-        if($user == null)
-        {
-            return redirect()->back();
-        }
-        if($user == "korisnik")
-        {
-            return Redirect::back()->with("poruka","Niste autorizovani za ovo");
-        }
-
-        if($user->Rola == "admin")
-        {
+        if (auth()->user() == null) {
             return $next($request);
         }
-        else
-        {
-            return Redirect::back()->with("poruka","Niste autorizovani za ovo");
+        if (auth()->user()->Rola == "korisnik") {
+            return $next($request);
+        } else {
+            return abort(403, 'Forbidden access');
+            ;
         }
-        
     }
 }

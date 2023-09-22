@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
-class ProveraAdmin
+
+class Authorization
 {
     /**
      * Handle an incoming request.
@@ -18,23 +19,14 @@ class ProveraAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        $user = Auth::user();
+        $user = auth()->user();
+
         if($user == null)
         {
-            return redirect()->back();
+            return Redirect::back()->with("poruka","Niste autorizovani da budete ovde");
         }
-        if($user == "korisnik")
-        {
-            return Redirect::back()->with("poruka","Niste autorizovani za ovo");
-        }
-
-        if($user->Rola == "admin")
-        {
+        else if ($user->Rola == "moderator") {
             return $next($request);
-        }
-        else
-        {
-            return Redirect::back()->with("poruka","Niste autorizovani za ovo");
         }
         
     }
